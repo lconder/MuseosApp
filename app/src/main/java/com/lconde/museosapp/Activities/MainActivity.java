@@ -1,7 +1,9 @@
 package com.lconde.museosapp.Activities;
 
+import android.app.DownloadManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,18 +14,37 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.lconde.museosapp.Fragments.ArtFragment;
 import com.lconde.museosapp.Fragments.HistoryFragment;
 import com.lconde.museosapp.Fragments.InteractiveFragment;
 import com.lconde.museosapp.R;
 import com.lconde.museosapp.SlidingTabLayout;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class MainActivity extends AppCompatActivity implements Response.Listener, Response.ErrorListener
+{
     Toolbar toolbar;
     ViewPager mPager;
     SlidingTabLayout mTabs;
@@ -56,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
             /*ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
             layoutParams.height=0;*/
         }
-
-
     }
 
     @Override
@@ -82,6 +101,78 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void onStart()
+    {
+        super.onStart();
+        // Create request queue
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        //  Create json array request
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET,"http://192.168.0.24:8000/museos",new Response.Listener<JSONArray>()
+        {
+
+            public void onResponse(JSONArray jsonArray)
+            {
+                BufferedOutputStream bos;
+                File cache = new File(Environment.getExternalStorageDirectory() + File.separator + "cache.json");
+                try {
+                    cache.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                try{
+                    bos = new BufferedOutputStream(new FileOutputStream(cache));
+                    bos.write(jsonArray.toString().getBytes());
+                    bos.flush();
+                    bos.close();
+
+                }catch (FileNotFoundException e)
+                {
+                    e.printStackTrace();
+                }catch(IOException a)
+                {
+                    a.printStackTrace();
+                }
+                finally{
+                    System.gc();
+                }
+
+                for(int i=0;i<jsonArray.length();i++)
+                {
+                    try
+                    {
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+                        System.out.println(jsonObject.getString("nombre"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.e("Error", "Unable to parse json array "+volleyError.toString());
+            }
+        });
+        // add json array request to the request queue
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error)
+    {
+
+    }
+
+    @Override
+    public void onResponse(Object response)
+    {
+
+    }
+
+
+
     class MyPagerAdapter extends FragmentPagerAdapter {
         int icons[] = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
         FragmentManager fragmentManager;
@@ -97,7 +188,8 @@ public class MainActivity extends AppCompatActivity {
         {
             Fragment fragment = null;
 
-            switch (position) {
+            switch (position)
+            {
                 case 0:
                     fragment = ArtFragment.newInstance("", "");
                     break;
