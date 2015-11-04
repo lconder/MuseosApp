@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">Museos App</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Información</string>
     <string name="title_activity_splash">Splash</string>
     <string name="TAG">TAG</string>
     <string name="TRANSLATION_Y">translationY</string>
-<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_detail">detailActivity</string>
+    <string name="coordinatar_card">Coordinator Layout</string>
+    <string name="coordinatar_card_desc">The Design library introduces CoordinatorLayout, a layout which provides an additional level of control over touch events between child views, something which many of the components in the Design library take advantage of.</string>
+    <string name="appBarLayout_card">AppBarLayout</string>
+    <string name="appBarLayout_card_desc">AppBarLayout allows your Toolbar and other views (such as tabs provided by TabLayout) to react to scroll events in a sibling view marked with a ScrollingViewBehavior. Now, as the user scrolls, the AppBarLayout can respond to those events by using the children’s scroll flags to control how they enter (scroll on screen) and exit (scroll off screen)</string>
+    <string name="collapsing_toolbar_card">Collapsing Toolbar</string>
+    <string name="collapsing_toolbar_card_desc">Adding a Toolbar directly to an AppBarLayout gives you access to the enterAlwaysCollapsed and exitUntilCollapsed scroll flags, but not the detailed control on how different elements react to collapsing. For that, you can use CollapsingToolbarLayout.</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="server">http://museosapp.azurewebsites.net/museos</string>
+
 </resources>

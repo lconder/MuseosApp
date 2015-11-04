@@ -1,6 +1,5 @@
 package com.lconde.museosapp.Activities;
 
-import android.app.DownloadManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Environment;
@@ -19,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -48,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
     Toolbar toolbar;
     ViewPager mPager;
     SlidingTabLayout mTabs;
+    String server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
             /*ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
             layoutParams.height=0;*/
         }
+
+        server  = getResources().getString(R.string.server);
     }
 
     @Override
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         // Create request queue
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         //  Create json array request
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET,"http://192.168.0.24:8000/museos",new Response.Listener<JSONArray>()
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET,server,new Response.Listener<JSONArray>()
         {
 
             public void onResponse(JSONArray jsonArray)
@@ -119,8 +120,6 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
                 try{
                     bos = new BufferedOutputStream(new FileOutputStream(cache));
                     bos.write(jsonArray.toString().getBytes());
@@ -143,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
                     try
                     {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
-                        System.out.println(jsonObject.getString("nombre"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -159,22 +157,8 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         requestQueue.add(jsonArrayRequest);
     }
 
-    @Override
-    public void onErrorResponse(VolleyError error)
-    {
-
-    }
-
-    @Override
-    public void onResponse(Object response)
-    {
-
-    }
-
-
-
     class MyPagerAdapter extends FragmentPagerAdapter {
-        int icons[] = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+        int icons[] = {R.mipmap.arte, R.mipmap.interactivo, R.mipmap.historia};
         FragmentManager fragmentManager;
 
 
@@ -212,12 +196,25 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         @Override
         public CharSequence getPageTitle(int position) {
             Drawable drawable = getResources().getDrawable(icons[position]);
-            drawable.setBounds(0, 0, 96, 96);
+            drawable.setBounds(0, 0, 88, 88);
             ImageSpan imageSpan = new ImageSpan(drawable);
             SpannableString spannableString = new SpannableString(" ");
             spannableString.setSpan(imageSpan, 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             return spannableString;
         }
+
+    }
+
+
+    @Override
+    public void onErrorResponse(VolleyError error)
+    {
+
+    }
+
+    @Override
+    public void onResponse(Object response)
+    {
 
     }
 }

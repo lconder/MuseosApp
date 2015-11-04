@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/md_pink_900</item>
         <item name="colorPrimaryDark">@color/md_pink_700</item>
         <item name="android:windowTranslucentNavigation">false</item>
-        <item name="colorControlHighlight">@color/md_indigo_500</item>
+        <item name="colorControlHighlight">@color/md_pink_900</item>
     </style>
 
     <!-- <style name="AppTheme2" parent="Theme.AppCompat.NoActionBar">

@@ -1,6 +1,12 @@
 package com.lconde.museosapp;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
 public class Museo
 {
     String nombre;
@@ -16,8 +22,10 @@ public class Museo
     String twitter;
     String instagram;
     String web;
+    List<Horario> horarios;
 
-    public Museo(String nombre, int id, String imagen, String telefono, String direccion, String latitud, String longitud, String descripcionCorta, String descripcionLarga, String facebook, String twitter, String instagram, String web) {
+    public Museo(String nombre, int id, String imagen, String telefono, String direccion, String latitud, String longitud, String descripcionCorta, String descripcionLarga, String facebook, String twitter, String instagram, String web,List<Horario> horarios)
+    {
         this.nombre = nombre;
         this.id = id;
         this.imagen = imagen;
@@ -31,9 +39,20 @@ public class Museo
         this.twitter = twitter;
         this.instagram = instagram;
         this.web = web;
+        this.horarios = horarios;
     }
 
-    public Museo(String nombre, int id, String imagen) {
+    public Museo(String nombre, int id, String imagen,String latitud,String longitud)
+    {
+        this.nombre = nombre;
+        this.id = id;
+        this.imagen = imagen;
+        this.latitud = latitud;
+        this.longitud = longitud;
+    }
+
+    public Museo(String nombre, int id, String imagen)
+    {
         this.nombre = nombre;
         this.id = id;
         this.imagen = imagen;
@@ -141,5 +160,15 @@ public class Museo
 
     public String getWeb() {
         return web;
+    }
+
+    public boolean isOpen()
+    {
+        Calendar now = Calendar.getInstance();
+        Date noww = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("K:mm a");
+        String formattedTime = sdf.format(noww);
+        System.out.println("Día de la semana:" + now.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())+"Hora del dia: "+now.get(Calendar.HOUR_OF_DAY)+":"+now.get(Calendar.MINUTE));
+        return true;
     }
 }
