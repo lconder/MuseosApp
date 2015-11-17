@@ -1,5 +1,6 @@
 package com.lconde.museosapp.Activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,8 +36,7 @@ public class detailActivity extends AppCompatActivity
     Button buttonPhone;
     Button buttonWeb;
     Button buttonFacebook;
-    Button buttonTwitter;
-    Button buttonInstagram;
+    Button buttonTwitterInsta;
     TextView textViewPhone;
     TextView textViewDescripcion;
 
@@ -91,7 +91,10 @@ public class detailActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Snackbar.make(v, "Abrir web de museo", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v, "Abrir web de museo: ", Snackbar.LENGTH_SHORT).show();
+                Intent intent = new Intent(detailActivity.this, webActivity.class);
+                intent.putExtra("url",extras.getString("webMuseo"));
+                startActivity(intent);
             }
         });
 
@@ -101,8 +104,33 @@ public class detailActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Snackbar.make(v, "Abrir Facebook de Museo", Snackbar.LENGTH_SHORT).show();
+                Intent facebookAppIntent;
+                try {
+                    facebookAppIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(extras.getString("facebookIdMuseo")));
+                    startActivity(facebookAppIntent);
+                } catch (ActivityNotFoundException e) {
+                    facebookAppIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(extras.getString("facebookMuseo")));
+                    startActivity(facebookAppIntent);
+                }
             }
         });
+
+
+        buttonTwitterInsta = (Button) findViewById(R.id.twitterinsta);
+        //System.out.println("Twitter: "+extras.getString("twitterMuseo")+" Instagram: "+extras.getString("instagramMuseo"));
+        if(extras.getString("instagramMuseo").equals("") && extras.getString("twitterMuseo").equals(""))
+        {
+           buttonTwitterInsta.setVisibility(View.GONE);
+        }else if (extras.getString("twitterMuseo").equals("") && !extras.getString("instagramMuseo").equals(""))
+        {
+            buttonTwitterInsta.setBackgroundResource(R.mipmap.instagram);
+        }else if (extras.getString("instagramMuseo").equals("") && !extras.getString("twitterMuseo").equals(""))
+        {
+            buttonTwitterInsta.setBackgroundResource(R.mipmap.twitter);
+        }else if(!extras.getString("instagramMuseo").equals("") && !extras.getString("twitterMuseo").equals(""))
+        {
+            buttonTwitterInsta.setBackgroundResource(R.mipmap.instagram);
+        }
 
     }
 

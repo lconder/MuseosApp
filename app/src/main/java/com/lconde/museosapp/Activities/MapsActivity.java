@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.lconde.museosapp.Museo;
 import com.lconde.museosapp.R;
@@ -34,9 +37,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends AppCompatActivity {
+public class MapsActivity extends AppCompatActivity
+{
 
-    private GoogleMap mMap;
     Toolbar toolbar;
     GoogleMap map;
     LocationManager mlocManager;
@@ -64,6 +67,27 @@ public class MapsActivity extends AppCompatActivity {
 
         // LocationListener mlocListener = new MyLocationListener();
         //mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
+
+
+        map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker)
+            {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker)
+            {
+
+                View v =  getLayoutInflater().inflate(R.layout.info_map,null);
+                TextView nombre = (TextView) v.findViewById(R.id.nombre);
+                ImageView imagen = (ImageView) v.findViewById(R.id.image);
+                nombre.setText(marker.getTitle());
+
+                return v;
+            }
+        });
 
         try {
             readJson();

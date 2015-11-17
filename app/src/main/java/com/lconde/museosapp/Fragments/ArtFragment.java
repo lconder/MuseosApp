@@ -20,6 +20,7 @@ import com.lconde.museosapp.Activities.detailActivity;
 import com.lconde.museosapp.Horario;
 import com.lconde.museosapp.Museo;
 import com.lconde.museosapp.MyRecyclerAdapter;
+import com.lconde.museosapp.QRreaderActivity;
 import com.lconde.museosapp.R;
 
 import org.json.JSONArray;
@@ -72,9 +73,7 @@ public class ArtFragment extends Fragment
             e.printStackTrace();
         }
 
-        fab1 = (FloatingActionButton) v.findViewById(R.id.fab1);
-        fab2 = (FloatingActionButton) v.findViewById(R.id.fab2);
-        fab3 = (FloatingActionButton) v.findViewById(R.id.fab3);
+
 
         recyclerViewMuseos = (RecyclerView) v.findViewById(R.id.recycler_view);
         recyclerViewMuseos.setLayoutManager(new LinearLayoutManager(v.getContext()));
@@ -82,6 +81,10 @@ public class ArtFragment extends Fragment
         rcAdapter = new MyRecyclerAdapter(v.getContext(),museos);
         recyclerViewMuseos.setAdapter(rcAdapter);
 
+
+        fab1 = (FloatingActionButton) v.findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton) v.findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) v.findViewById(R.id.fab3);
 
         final FloatingActionMenu menu1 = (FloatingActionMenu) v.findViewById(R.id.menu1);
 
@@ -132,6 +135,7 @@ public class ArtFragment extends Fragment
             String descripcionCorta = jsonObject.getString("descripcionCorta");
             String descripcionLarga = jsonObject.getString("descripcionLarga");
             String facebook = jsonObject.getString("facebook");
+            String facebookId = jsonObject.getString("facebookid");
             String twitter = jsonObject.getString("twitter");
             String instagram = jsonObject.getString("instagram");
             String web = jsonObject.getString("web");
@@ -139,7 +143,7 @@ public class ArtFragment extends Fragment
             int id = jsonObject.getInt("id");
             if(jsonObject.getString("categoria").equals("arte"))
             {
-                Museo temp = new Museo (nombre,id,imagen,telefono,direccion, latitud,  longitud,  descripcionCorta,  descripcionLarga,  facebook,  twitter,  instagram,  web,horarios);
+                Museo temp = new Museo (nombre,id,imagen,telefono,direccion, latitud,  longitud,  descripcionCorta,  descripcionLarga,  facebook, facebookId, twitter,  instagram,  web,horarios);
                 museos.add(temp);
                 temp = null;
             }
@@ -156,8 +160,10 @@ public class ArtFragment extends Fragment
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String dia = jsonObject.getString("dia");
-                String hora = jsonObject.getString("horario");
-                Horario tempH = new Horario(dia,hora);
+                String horaApertura = jsonObject.getString("horaApertura");
+                String horaCierre = jsonObject.getString(("horaCierre"));
+                Horario tempH = new Horario(dia,horaApertura,horaCierre);
+                //System.out.println("Horario Dia: "+dia+" "+horaApertura+" a "+horaCierre);
                 temp.add(tempH);
                 tempH = null;
             } catch (JSONException e) {
@@ -181,6 +187,8 @@ public class ArtFragment extends Fragment
                     break;
                 case R.id.fab2:
                     text = fab2.getLabelText();
+                    Intent intent2 = new Intent(getActivity().getApplicationContext(),QRreaderActivity.class);
+                    startActivity(intent2);
                     break;
                 case R.id.fab3:
                     text = fab3.getLabelText();

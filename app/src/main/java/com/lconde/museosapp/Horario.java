@@ -2,27 +2,55 @@ package com.lconde.museosapp;
 
 public class Horario
 {
-    String día;
-    String hora;
+    String dia;
+    String horaApertura;
+    String horaCierre;
 
-    public Horario(String día, String hora) {
-        this.día = día;
-        this.hora = hora;
+
+    public Horario(String dia, String horaApertura, String horaCierre)
+    {
+        this.dia = dia;
+        this.horaApertura = horaApertura;
+        this.horaCierre = horaCierre;
+    }
+
+    public Horario()
+    {
+        this.dia="";
+        this.horaCierre="";
+        this.horaApertura="";
     }
 
     public String getDía() {
-        return día;
+        return dia;
     }
 
-    public String getHora() {
-        return hora;
+    public String getHoraApertura() {
+        return horaApertura;
+    }
+
+    public String getHoraCierre() {
+        return horaCierre;
     }
 
     public void setDía(String día) {
-        this.día = día;
+        this.dia = dia;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setHoraApertura(String horaApertura) {
+        this.horaApertura = horaApertura;
+    }
+
+    public void setHoraCierre(String horaCierre) {
+        this.horaCierre = horaCierre;
+    }
+
+    public boolean  buscarDia(String dia)
+    {
+
+        if (this.dia == dia)
+            return true;
+        else
+            return false;
     }
 }

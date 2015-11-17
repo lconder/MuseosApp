@@ -142,6 +142,7 @@ public class HistoryFragment extends Fragment
             String descripcionCorta = jsonObject.getString("descripcionCorta");
             String descripcionLarga = jsonObject.getString("descripcionLarga");
             String facebook = jsonObject.getString("facebook");
+            String facebookId = jsonObject.getString("facebookid");
             String twitter = jsonObject.getString("twitter");
             String instagram = jsonObject.getString("instagram");
             String web = jsonObject.getString("web");
@@ -149,7 +150,7 @@ public class HistoryFragment extends Fragment
             int id = jsonObject.getInt("id");
             if(jsonObject.getString("categoria").equals("historia"))
             {
-                Museo temp = new Museo (nombre,id,imagen,telefono,direccion, latitud,  longitud,  descripcionCorta,  descripcionLarga,  facebook,  twitter,  instagram,  web,horarios);
+                Museo temp = new Museo (nombre,id,imagen,telefono,direccion, latitud,  longitud,  descripcionCorta,  descripcionLarga,  facebook,  facebookId, twitter,  instagram,  web,horarios);
                 museos.add(temp);
                 temp = null;
             }
@@ -167,8 +168,10 @@ public class HistoryFragment extends Fragment
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String dia = jsonObject.getString("dia");
-                String hora = jsonObject.getString("horario");
-                Horario tempH = new Horario(dia,hora);
+                String horaApertura = jsonObject.getString("horaApertura");
+                String horaCierre = jsonObject.getString(("horaCierre"));
+                //System.out.println("Horario Dia: "+dia+" "+horaApertura+" a "+horaCierre);
+                Horario tempH = new Horario(dia,horaApertura,horaCierre);
                 temp.add(tempH);
                 tempH = null;
             } catch (JSONException e) {

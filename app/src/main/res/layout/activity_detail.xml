@@ -248,7 +248,7 @@
                     <Button
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:id="@+id/imageButton2"
+                        android:id="@+id/twitterinsta"
                         android:layout_alignBottom="@+id/button_facebook"
                         android:layout_toLeftOf="@+id/button_facebook"
                         android:layout_toStartOf="@+id/button_facebook"

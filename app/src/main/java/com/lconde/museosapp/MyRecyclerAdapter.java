@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.lconde.museosapp.Activities.detailActivity;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
 import java.util.List;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder>
@@ -39,10 +40,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position)
     {
         String estado = "";
+
         if(museos.get(position).isOpen())
             estado = "Abierto";
         else
             estado = "Cerrado";
+
+
+
         holder.museoName.setText(museos.get(position).getNombre());
         holder.museoStatus.setText(estado);
         Picasso.with(context).load(museos.get(position).getImagen()).into(holder.museoPhoto);
@@ -53,6 +58,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         holder.descripcionCortaMuseo = museos.get(position).getDescripcionCorta();
         holder.descripcionLargaMuseo = museos.get(position).getDescripcionLarga();
         holder.facebookMuseo = museos.get(position).getFacebook();
+        holder.facebookIdMuseo = museos.get(position).getFacebookId();
         holder.twitterMuseo = museos.get(position).getTwitter();
         holder.instagramMuseo = museos.get(position).getInstagram();
         holder.webMuseo = museos.get(position).getWeb();
@@ -78,6 +84,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         public String descripcionCortaMuseo;
         public String descripcionLargaMuseo;
         public String facebookMuseo;
+        public String facebookIdMuseo;
         public String twitterMuseo;
         public String instagramMuseo;
         public String webMuseo;
@@ -99,6 +106,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
             intent.putExtra("telefonoMuseo",telefonoMuseo);
             intent.putExtra("descripcionCortaMuseo",descripcionCortaMuseo);
             intent.putExtra("facebookMuseo",facebookMuseo);
+            intent.putExtra("facebookIdMuseo",facebookIdMuseo);
             intent.putExtra("twitterMuseo",twitterMuseo);
             intent.putExtra("instagramMuseo",instagramMuseo);
             intent.putExtra("webMuseo",webMuseo);
