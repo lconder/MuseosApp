@@ -8,6 +8,7 @@
     <string name="title_activity_detail">detailActivity</string>
     <string name="title_activity_maps">Map</string>
     <string name="server">http://museosapp.azurewebsites.net/museos</string>
+    <string name="serverP">http://museosapp.azurewebsites.net/Piezas</string>
     <string name="title_activity_web">Página Web</string>
     <string name="title_activity_qrreader">Escanear QR</string>
 

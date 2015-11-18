@@ -14,13 +14,11 @@ import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.lconde.museosapp.Activities.MainActivity;
 import com.lconde.museosapp.Activities.MapsActivity;
-import com.lconde.museosapp.Activities.detailActivity;
 import com.lconde.museosapp.Horario;
 import com.lconde.museosapp.Museo;
 import com.lconde.museosapp.MyRecyclerAdapter;
-import com.lconde.museosapp.QRreaderActivity;
+import com.lconde.museosapp.Activities.QRreaderActivity;
 import com.lconde.museosapp.R;
 
 import org.json.JSONArray;
@@ -30,11 +28,8 @@ import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
