@@ -74,6 +74,7 @@
         <activity
             android:name=".Activities.webActivity"
             android:label="@string/title_activity_web"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
@@ -85,7 +86,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.MainActivity" />
         </activity>
-        <activity android:name=".Activities.PieceActivity" >
+        <activity
+            android:name=".Activities.PieceActivity"
+            android:label="@string/title_activity_detail"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.QRreaderActivity" />
         </activity>
     </application>
 
