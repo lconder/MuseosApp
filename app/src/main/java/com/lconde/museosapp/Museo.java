@@ -200,7 +200,14 @@ public class Museo
                     }
                     break;
             case "martes":
-                    System.out.println("Hoy es Martes");
+                    Horario martes = this.buscaDia("Martes");
+                    if(martes != null)
+                    {
+                        horaApertura = martes.getHoraApertura();
+                        horaCierre = martes.getHoraCierre();
+                        bandera= comparaHora(horaActual,minutosActuales,horaApertura,horaCierre);
+
+                    }
                     break;
             case "miércoles":
                     Horario miercoles = this.buscaDia("Miércoles");
@@ -222,13 +229,31 @@ public class Museo
                     }
                     break;
             case "viernes":
-                    System.out.println("Hoy es Viernes");
+                    Horario viernes = this.buscaDia("Viernes");
+                    if(viernes!=null)
+                    {
+                        horaApertura = viernes.getHoraApertura();
+                        horaCierre = viernes.getHoraCierre();
+                        bandera = comparaHora(horaActual,minutosActuales,horaApertura,horaCierre);
+                    }
                     break;
             case "sábado":
-                    System.out.println("Hoy es Sábado");
+                    Horario sabado = this.buscaDia("Sábado");
+                    if(sabado!=null)
+                    {
+                        horaApertura = sabado.getHoraApertura();
+                        horaCierre = sabado.getHoraCierre();
+                        bandera = comparaHora(horaActual,minutosActuales,horaApertura,horaCierre);
+                    }
                     break;
             case "domingo":
-                    System.out.println("Hoy es Domingo");
+                    Horario domingo = this.buscaDia("Domingo");
+                    if(domingo!=null)
+                    {
+                        horaApertura = domingo.getHoraApertura();
+                        horaCierre = domingo.getHoraCierre();
+                        bandera = comparaHora(horaActual,minutosActuales,horaApertura,horaCierre);
+                    }
                     break;
         }
 
