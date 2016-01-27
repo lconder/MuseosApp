@@ -4,7 +4,6 @@ import android.content.Context;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,13 +15,12 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.lconde.museosapp.Museo;
+import com.lconde.museosapp.Classes.Museo;
 import com.lconde.museosapp.R;
 
 import org.json.JSONArray;
@@ -60,8 +58,11 @@ public class MapsActivity extends AppCompatActivity
         SupportMapFragment spmp = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         map=spmp.getMap();
 
-        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         map.setMyLocationEnabled(true);
+        map.getUiSettings().setZoomControlsEnabled(true);
+        map.getUiSettings().setCompassEnabled(true);
+        map.setTrafficEnabled(true);
 
         mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 
@@ -69,7 +70,7 @@ public class MapsActivity extends AppCompatActivity
         //mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
 
 
-        map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+        /*map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Override
             public View getInfoWindow(Marker marker)
             {
@@ -87,7 +88,7 @@ public class MapsActivity extends AppCompatActivity
 
                 return v;
             }
-        });
+        });*/
 
         try {
             readJson();
@@ -100,13 +101,15 @@ public class MapsActivity extends AppCompatActivity
 
         map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(18.997264, -98.203131)));
 
-        if (Build.VERSION.SDK_INT < 19) {
+        if (Build.VERSION.SDK_INT < 19)
+        {
             FrameLayout statusBar = (FrameLayout) findViewById(R.id.statusBar);
             statusBar.setVisibility(View.GONE);
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 
     public void readJson() throws IOException, JSONException
     {
@@ -135,8 +138,6 @@ public class MapsActivity extends AppCompatActivity
             museos.add(temp);
             temp = null;
         }
-
-        System.out.println("Archivo cache: " + jsonBuilder);
     }
 
     public void createMarkers()
@@ -145,7 +146,8 @@ public class MapsActivity extends AppCompatActivity
         {
             map.addMarker(new MarkerOptions()
                     .position(new LatLng(Double.parseDouble(i.getLatitud()),Double.parseDouble(i.getLongitud())))
-                    .title(i.getNombre()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)));
+                    .title(i.getNombre()).icon(BitmapDescriptorFactory.fromResource(R.mipmap.marker)));
+
         }
     }
 }

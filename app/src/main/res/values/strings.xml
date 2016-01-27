@@ -1,15 +1,24 @@
 <resources>
     <string name="app_name">Museos App</string>
     <string name="action_settings">Información</string>
+    <string name="action_id">Identificate</string>
     <string name="title_activity_splash">Splash</string>
-    <string name="TAG">TAG</string>
-    <string name="TRANSLATION_Y">translationY</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_detail">detailActivity</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Ubícate</string>
     <string name="server">http://museosapp.azurewebsites.net/museos</string>
-    <string name="serverP">http://museosapp.azurewebsites.net/Piezas</string>
+    <string name="serverP">http://museosapp.azurewebsites.net/Piezas/</string>
     <string name="title_activity_web">Página Web</string>
     <string name="title_activity_qrreader">Escanear QR</string>
+    <string name="title_activity_location">Locación de Museo</string>
+    <string name="title_activity_event">eventActivity</string>
+    <string-array name="universidades">
+        <item>BUAP</item>
+        <item>Universidad 2</item>
+        <item>Universidad 3</item>
+        <item>Universidad 4</item>
+        <item>Universidad 5</item>
+        <item>Universidad 6</item>
+    </string-array>
 
 </resources>

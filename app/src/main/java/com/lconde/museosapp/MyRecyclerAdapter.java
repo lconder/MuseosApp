@@ -9,12 +9,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lconde.museosapp.Activities.detailActivity;
+import com.lconde.museosapp.Classes.Museo;
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
 import java.util.List;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder>
@@ -56,12 +55,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         holder.telefonoMuseo = museos.get(position).getTelefono();
         holder.direccionMuseo = museos.get(position).getDireccion();
         holder.descripcionCortaMuseo = museos.get(position).getDescripcionCorta();
-        holder.descripcionLargaMuseo = museos.get(position).getDescripcionLarga();
         holder.facebookMuseo = museos.get(position).getFacebook();
         holder.facebookIdMuseo = museos.get(position).getFacebookId();
         holder.twitterMuseo = museos.get(position).getTwitter();
         holder.instagramMuseo = museos.get(position).getInstagram();
         holder.webMuseo = museos.get(position).getWeb();
+        holder.latitudMuseo = museos.get(position).getLatitud();
+        holder.longitudMuseo = museos.get(position).getLongitud();
+        holder.twitterId = museos.get(position).getTwitterId();
     }
 
     @Override
@@ -82,12 +83,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         public String telefonoMuseo;
         public String direccionMuseo;
         public String descripcionCortaMuseo;
-        public String descripcionLargaMuseo;
         public String facebookMuseo;
         public String facebookIdMuseo;
         public String twitterMuseo;
         public String instagramMuseo;
         public String webMuseo;
+        public String latitudMuseo;
+        public String longitudMuseo;
+        public String twitterId;
 
         public ViewHolder(View view) {
             super(view);
@@ -110,6 +113,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
             intent.putExtra("twitterMuseo",twitterMuseo);
             intent.putExtra("instagramMuseo",instagramMuseo);
             intent.putExtra("webMuseo",webMuseo);
+            intent.putExtra("latitud",latitudMuseo);
+            intent.putExtra("longitud",longitudMuseo);
+            intent.putExtra("twitterId",twitterId);
             v.getContext().startActivity(intent);
         }
     }

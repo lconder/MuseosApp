@@ -1,5 +1,8 @@
 package com.lconde.museosapp.Activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Environment;
@@ -18,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,7 +45,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements Response.Listener, Response.ErrorListener
+public class MainActivity extends AppCompatActivity
 {
     Toolbar toolbar;
     ViewPager mPager;
@@ -95,8 +99,21 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if(id == R.id.action_id)
+        {
+            SharedPreferences sp=sp = getSharedPreferences("datos", Context.MODE_PRIVATE);
+            if(sp.getBoolean("bandera",false))
+            {
+                Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
+                startActivity(intent);
+            }else {
+                Intent intent = new Intent(MainActivity.this, IdentifyActivity.class);
+                startActivity(intent);
+            }
+        }else if (id == R.id.action_settings)
+        {
+            Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -205,16 +222,4 @@ public class MainActivity extends AppCompatActivity implements Response.Listener
 
     }
 
-
-    @Override
-    public void onErrorResponse(VolleyError error)
-    {
-
-    }
-
-    @Override
-    public void onResponse(Object response)
-    {
-
-    }
 }

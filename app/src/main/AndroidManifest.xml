@@ -11,12 +11,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
+    <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -35,8 +30,8 @@
         </activity>
         <activity
             android:name=".Activities.Splash"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -93,6 +88,31 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.QRreaderActivity" />
+        </activity>
+        <activity
+            android:name=".Activities.locationActivity"
+            android:label="@string/title_activity_location"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".Activities.eventActivity"
+            android:label="@string/title_activity_event"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity android:name=".Fragments.eventFragment"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".Fragments.promoFragment" >
+        </activity>
+        <activity android:name=".Activities.InfoActivity" >
+        </activity>
+        <activity
+            android:name=".Activities.IdentifyActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name=".Activities.ManualActivity" >
+        </activity>
+        <activity android:name=".Activities.ProfileActivity" >
         </activity>
     </application>
 

@@ -2,30 +2,21 @@ package com.lconde.museosapp.Activities;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.graphics.Palette;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lconde.museosapp.R;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class detailActivity extends AppCompatActivity
 {
@@ -35,17 +26,18 @@ public class detailActivity extends AppCompatActivity
     FloatingActionButton fab;
     Button buttonPhone;
     Button buttonWeb;
+    Button buttonMap;
     Button buttonFacebook;
     Button buttonTwitterInsta;
     TextView textViewPhone;
     TextView textViewDescripcion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        System.out.println("colores: " + R.attr.colorPrimary + "y:" + R.attr.colorPrimaryDark);
         final Bundle extras = getIntent().getExtras();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -59,7 +51,7 @@ public class detailActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Compartir Fotografía...", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v, "Se ha registrado tu visita. Gracias", Snackbar.LENGTH_SHORT).show();
             }
         });
         ImageView header = (ImageView) findViewById(R.id.img_content);
@@ -76,13 +68,26 @@ public class detailActivity extends AppCompatActivity
         buttonPhone = (Button) findViewById(R.id.button_phone);
         buttonPhone.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Snackbar.make(v, "Llamada a museo", Snackbar.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_CALL);
                 String tel = extras.getString("telefonoMuseo");
                 intent.setData(Uri.parse("tel:" + tel));
                 startActivity(intent);
+            }
+        });
+
+        buttonMap = (Button) findViewById(R.id.button_location);
+        buttonMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(detailActivity.this, locationActivity.class);
+                intent.putExtra("latitud",extras.getString("latitud"));
+                intent.putExtra("longitud",extras.getString("longitud"));
+                intent.putExtra("nombre",extras.getString("nombreMuseo"));
+                startActivity(intent);
+                Snackbar.make(v, "Trazar ruta de Museo ", Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -121,19 +126,49 @@ public class detailActivity extends AppCompatActivity
         if(extras.getString("instagramMuseo").equals("") && extras.getString("twitterMuseo").equals(""))
         {
            buttonTwitterInsta.setVisibility(View.GONE);
+            buttonTwitterInsta.setTag(0);
         }else if (extras.getString("twitterMuseo").equals("") && !extras.getString("instagramMuseo").equals(""))
         {
             buttonTwitterInsta.setBackgroundResource(R.mipmap.instagram);
+            buttonTwitterInsta.setTag(1);
         }else if (extras.getString("instagramMuseo").equals("") && !extras.getString("twitterMuseo").equals(""))
         {
             buttonTwitterInsta.setBackgroundResource(R.mipmap.twitter);
+            buttonTwitterInsta.setTag(2);
         }else if(!extras.getString("instagramMuseo").equals("") && !extras.getString("twitterMuseo").equals(""))
         {
             buttonTwitterInsta.setBackgroundResource(R.mipmap.instagram);
+            buttonTwitterInsta.setTag(1);
         }
 
+        buttonTwitterInsta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(detailActivity.this,buttonTwitterInsta.getTag().toString(),Toast.LENGTH_SHORT).show();
+                switch(buttonTwitterInsta.getTag().toString())
+                {
+                    case "1":
+                                break;
+
+                    case "2":
+                            Intent intent = null;
+                             try {
+                                // get the Twitter app if possible
+                                getApplicationContext().getPackageManager().getPackageInfo("com.twitter.android", 0);
+                                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(extras.getString("twitterId")));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                             } catch (Exception e) {
+                                // no Twitter app, revert to browser
+                                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(extras.getString("twitterMuseo")));
+                            }
+                            getApplicationContext().startActivity(intent);
+                            break;
+
+                    default: break;
+                }
+            }
+        });
+
     }
-
-
 
 }

@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@mipmap/background_splash"
-    android:backgroundTint="@color/md_white_1000">
+    android:background="@mipmap/background_splash">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +24,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight=".8">
+        android:layout_weight=".85">
 
         <LinearLayout
             android:orientation="horizontal"

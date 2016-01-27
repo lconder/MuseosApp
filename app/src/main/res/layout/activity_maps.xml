@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -22,57 +21,7 @@
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary" />
 
-    <!-- <com.github.clans.fab.FloatingActionMenu
-         android:id="@+id/menu1"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:layout_alignParentBottom="true"
-         android:layout_alignParentRight="true"
-         android:paddingRight="10dp"
-         android:paddingBottom="10dp"
-         android:paddingLeft="10dp"
-         fab:menu_colorNormal="@color/md_cyan_500"
-         fab:menu_colorPressed="@color/md_pink_900"
-         fab:menu_colorRipple="@color/md_pink_700"
-         fab:menu_labels_ellipsize="end"
-         fab:menu_labels_singleLine="true"
-         fab:menu_backgroundColor="#ccffffff"
-         fab:menu_fab_label="Cerrar">
 
-         <com.github.clans.fab.FloatingActionButton
-             android:id="@+id/fab1"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:src="@drawable/ubicate"
-             fab:fab_size="mini"
-             fab:fab_colorNormal="@color/md_cyan_500"
-             fab:fab_colorPressed="@color/md_pink_900"
-             fab:fab_colorRipple="@color/md_pink_700"
-             fab:fab_label="Ubicate" />
-
-         <com.github.clans.fab.FloatingActionButton
-             android:id="@+id/fab2"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:src="@drawable/escanea"
-             fab:fab_size="mini"
-             fab:fab_colorNormal="@color/md_cyan_500"
-             fab:fab_colorPressed="@color/md_pink_900"
-             fab:fab_colorRipple="@color/md_pink_700"
-             fab:fab_label="Escanear QR" />
-
-         <com.github.clans.fab.FloatingActionButton
-             android:id="@+id/fab3"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:src="@drawable/eventos"
-             fab:fab_size="mini"
-             fab:fab_colorNormal="@color/md_cyan_500"
-             fab:fab_colorPressed="@color/md_pink_900"
-             fab:fab_colorRipple="@color/md_pink_700"
-             fab:fab_label="Eventos y Promos" />
-
-     </com.github.clans.fab.FloatingActionMenu>-->
 
      <fragment xmlns:android="http://schemas.android.com/apk/res/android"
          xmlns:tools="http://schemas.android.com/tools"

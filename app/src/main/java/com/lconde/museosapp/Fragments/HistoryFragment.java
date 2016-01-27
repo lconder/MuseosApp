@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,8 +16,10 @@ import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.lconde.museosapp.Activities.MapsActivity;
-import com.lconde.museosapp.Horario;
-import com.lconde.museosapp.Museo;
+import com.lconde.museosapp.Activities.QRreaderActivity;
+import com.lconde.museosapp.Activities.eventActivity;
+import com.lconde.museosapp.Classes.Horario;
+import com.lconde.museosapp.Classes.Museo;
 import com.lconde.museosapp.MyRecyclerAdapter;
 import com.lconde.museosapp.R;
 
@@ -42,6 +45,7 @@ public class HistoryFragment extends Fragment
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
+    private SwipeRefreshLayout mySwipe;
 
     public HistoryFragment(){}
 
@@ -67,6 +71,17 @@ public class HistoryFragment extends Fragment
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+        mySwipe = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefresh);
+        mySwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+
+                mySwipe.setRefreshing(false);
+            }
+        });
 
         fab1 = (FloatingActionButton) v.findViewById(R.id.fab1);
         fab2 = (FloatingActionButton) v.findViewById(R.id.fab2);
@@ -97,6 +112,20 @@ public class HistoryFragment extends Fragment
         fab3.setOnClickListener(clickListener);
 
         return v;
+    }
+
+    public void refresh()
+    {
+        try {
+            readJson();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        rcAdapter = new MyRecyclerAdapter(getActivity().getApplicationContext(),museos);
+        recyclerViewMuseos.setAdapter(rcAdapter);
     }
 
     public boolean checkFile()
@@ -130,6 +159,8 @@ public class HistoryFragment extends Fragment
         JSONTokener tokener = new JSONTokener(jsonBuilder.toString());
         JSONArray jsonArray = new JSONArray(tokener);
 
+        museos.clear();
+
         for(int i=0;i<jsonArray.length();i++)
         {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -140,17 +171,17 @@ public class HistoryFragment extends Fragment
             String latitud = jsonObject.getString("latitud");
             String longitud = jsonObject.getString("longitud");
             String descripcionCorta = jsonObject.getString("descripcionCorta");
-            String descripcionLarga = jsonObject.getString("descripcionLarga");
             String facebook = jsonObject.getString("facebook");
             String facebookId = jsonObject.getString("facebookid");
             String twitter = jsonObject.getString("twitter");
             String instagram = jsonObject.getString("instagram");
             String web = jsonObject.getString("web");
+            String twitterId = jsonObject.getString("twitterId");
             horarios = creaHorarios(jsonObject.getJSONArray("horarios"));
             int id = jsonObject.getInt("id");
             if(jsonObject.getString("categoria").equals("historia"))
             {
-                Museo temp = new Museo (nombre,id,imagen,telefono,direccion, latitud,  longitud,  descripcionCorta,  descripcionLarga,  facebook,  facebookId, twitter,  instagram,  web,horarios);
+                Museo temp = new Museo (nombre,id,imagen,telefono,direccion, latitud,  longitud,  descripcionCorta,  facebook,  facebookId, twitter, twitterId,  instagram,  web,horarios);
                 museos.add(temp);
                 temp = null;
             }
@@ -185,23 +216,22 @@ public class HistoryFragment extends Fragment
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String text = "";
 
+            Intent intent;
             switch (v.getId()) {
                 case R.id.fab1:
-                    text = fab1.getLabelText();
-                    Intent intent = new Intent(getActivity().getApplicationContext(),MapsActivity.class);
+                    intent = new Intent(getActivity().getApplicationContext(),MapsActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.fab2:
-                    text = fab2.getLabelText();
+                    intent = new Intent(getActivity().getApplicationContext(),QRreaderActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.fab3:
-                    text = fab3.getLabelText();
+                    intent = new Intent(getActivity().getApplicationContext(),eventActivity.class);
+                    startActivity(intent);
                     break;
             }
-
-            Toast.makeText(v.getContext(), text, Toast.LENGTH_SHORT).show();
         }
     };
 
