@@ -1,0 +1,53 @@
+[
+  {
+    "id":1,
+    "titulo":"Ensalada desde $54",
+    "descripcion":"Presenta esta promoción en el mostrador ",
+    "lugar":"Saladett  ",
+    "fecha":"Del 21 de agosto al 10 de diciembre, 10:00 a 21:00",
+    "image":"saladett",
+    "link":"http://dondeir.com/viajes/tutankamon-llega-a-puebla/2015/08"
+
+  },
+  {
+    "id":2,
+    "titulo":"Súper Buffete 2x1",
+    "descripcion":"Menciona esta promo, con un id oficial",
+    "lugar":"Restaurant California",
+    "fecha":"Septiembre 4, 8:00 pm ",
+    "image":"ballet",
+    "link":"http://148.228.60.7/CCUNueva/detalle.php?id=2012214367"
+
+  },
+  {
+    "id":5,
+    "titulo":"2X1 Cerveza y Copeo",
+    "descripcion":"Pide tu michelada gratis para tu cerve",
+    "lugar":"La Botica",
+    "fecha":"Diciembre 2015",
+    "image":"botica",
+    "link":"http://www.conaculta.gob.mx/estados/actividades_detalle.php?id=127144#.VekeV51_Oko"
+
+  },
+  {
+    "id":4,
+    "titulo":"Martes Aritos Gratis ",
+    "descripcion":"Comprando 20 alitas llevate aritos de cebolla.",
+    "lugar":"Wing`s Army",
+    "fecha":"NA",
+    "image":"",
+    "link":"http://www.conaculta.gob.mx/estados/actividades_detalle.php?id=136244#.VekegZ1_Oko"
+
+  },
+
+  {
+    "id":3,
+    "titulo":"Tragos y cocteles 2x1",
+    "descripcion":" Todos los miércoles a partirt de las 5 pm",
+    "lugar":"Hotel Boutique La Purificadora",
+    "fecha":"12 de septiembre de 2015",
+    "image":"noche",
+    "link":"http://www.conaculta.gob.mx/estados/actividades_detalle.php?id=135288#.Vekgbp1_Okp"
+
+  }
+]

@@ -1,4 +1,4 @@
-package com.lconde.museosapp.Activities;
+    package com.lconde.museosapp.Activities;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;

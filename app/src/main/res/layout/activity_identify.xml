@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lconde.museosapp.Activities.IdentifyActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".1">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/card_view"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        card_view:cardCornerRadius="4dp"
+                        card_view:cardElevation="4dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="descuentos"
+                                android:id="@+id/textView5"
+                                android:layout_marginLeft="33dp"
+                                android:layout_marginStart="33dp"
+                                android:layout_marginTop="47dp"
+                                android:textColor="@color/md_pink_900"
+                                android:textSize="35dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" TUI    "
+                                android:id="@+id/textView6"
+                                android:textColor="@color/md_pink_900"
+                                android:textSize="50dp"
+                                android:layout_alignBottom="@+id/textView5"
+                                android:layout_toRightOf="@+id/textView5" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lee el código de tu tarjeta con la cámara de tu móvil para acceder a los beneficios."
+                                android:id="@+id/textView7"
+                                android:layout_centerVertical="true"
+                                android:layout_alignLeft="@+id/textView5"
+                                android:layout_alignStart="@+id/textView5"
+                                android:textColor="@color/md_pink_700"
+                                android:layout_alignRight="@+id/textView6"
+                                android:layout_alignEnd="@+id/textView6"
+                                android:textSize="20dp" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Leer QR"
+                                android:id="@+id/button_QR"
+                                android:background="@color/md_pink_50"
+                                android:textColor="@color/md_black_1000"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignLeft="@+id/textView7"
+                                android:layout_alignStart="@+id/textView7"
+                                android:layout_marginBottom="30dp" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Introducir"
+                                android:id="@+id/button_manual"
+                                android:background="@color/md_pink_50"
+                                android:textColor="@color/md_black_1000"
+                                android:layout_alignTop="@+id/button_QR"
+                                android:layout_toRightOf="@+id/textView5"
+                                android:layout_toEndOf="@+id/textView5" />
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/md_pink_50">
+
+                    <android.support.v7.widget.CardView
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/card_view2"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        card_view:cardCornerRadius="4dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="60dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginLeft="40dp"
+                        card_view:cardElevation="5dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Con la TUI podrás obtener descuentos en todos los museos registrados dentro de Museos App."
+                                android:id="@+id/textView8"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:textSize="20dp"
+                                android:gravity="center"
+                                android:textColor="@color/md_pink_700"/>
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/md_pink_900">
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

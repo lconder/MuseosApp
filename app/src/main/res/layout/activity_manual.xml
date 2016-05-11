@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lconde.museosapp.Activities.ManualActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".1"
+            android:background="@color/md_pink_50">
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="150dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                card_view:cardCornerRadius="4dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                card_view:cardElevation="5dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/spinner"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="49dp"
+                                style="@style/AppTheme"
+                                android:background="@color/md_pink_50" />
+
+                            <EditText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:ems="10"
+                                android:id="@+id/editText_id"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Acceder"
+                            android:id="@+id/button_acceder"
+                            android:layout_below="@+id/editText_id"
+                            android:layout_centerHorizontal="true"
+                            android:background="@color/md_pink_50"
+                            android:textColor="@color/md_black_1000"/>
+
+                    </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/md_pink_900">
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

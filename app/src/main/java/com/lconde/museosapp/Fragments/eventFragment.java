@@ -1,0 +1,39 @@
+package com.lconde.museosapp.Fragments;
+
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.lconde.museosapp.Classes.Evento;
+import com.lconde.museosapp.EventAdapter;
+import com.lconde.museosapp.R;
+import com.lconde.museosapp.ReadLocalJSON;
+
+import java.util.ArrayList;
+
+public class eventFragment extends Fragment
+{
+    ArrayList<Evento> events;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
+      View view = inflater.inflate(R.layout.fragment_event,container,false);
+
+        ReadLocalJSON readLocalJSON = new ReadLocalJSON();
+        events = readLocalJSON.getEvents(getActivity().getApplicationContext());
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(new EventAdapter(events, R.layout.row));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        return view;
+    }
+}

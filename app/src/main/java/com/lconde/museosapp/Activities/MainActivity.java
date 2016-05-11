@@ -21,7 +21,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -174,7 +173,8 @@ public class MainActivity extends AppCompatActivity
         requestQueue.add(jsonArrayRequest);
     }
 
-    class MyPagerAdapter extends FragmentPagerAdapter {
+    class MyPagerAdapter extends FragmentPagerAdapter
+    {
         int icons[] = {R.mipmap.arte, R.mipmap.interactivo, R.mipmap.historia};
         FragmentManager fragmentManager;
 
